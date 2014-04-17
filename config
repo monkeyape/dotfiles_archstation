@@ -1,0 +1,248 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, if you need a lot of unicode glyphs or
+# right-to-left text rendering, you should instead use pango for rendering and
+# chose a FreeType font, such as:
+
+font pango:DejaVu Sans Book 8
+new_window pixel 1
+focus_follows_mouse no
+popup_during_fullscreen smart
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 700 ms
+
+# Colors!
+set $blue #005588
+set $gray1 #4a4a4a
+set $gray2 #333333
+
+# Colors are 1 = dark. 2 = light.
+set $red1 #8c664c
+set $red2 #9f7155
+set $blue1 #646a6d
+set $blue2 #777e82
+set $green1 #746c48
+set $green2 #8f8558
+set $yellow1 #bfba92
+set $yellow2 #e0daac
+set $black1 #332d29
+set $black2 #817267
+set $magenta1 #766872
+set $magenta2 #897796
+set $cyan1 #4b5c5e
+set $cyan2 #556d70
+set $white1 #504339
+set $white2 #9a875f
+
+# Set window borders
+#class				border  bg	text	indicator
+client.focused            	$black2	$red1	#D8C3B6	$black2
+client.focused_inactive   	$black1	$black1	$white2	$black1
+client.unfocused		$black1	$black1	$white2	$black1
+client.urgent			$red2	$red2	#FFFFFF $red2
+
+# Raise Volume with MultimediaKey
+#bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+
+# Lower Volume with MultimediaKey
+#bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+
+# Mute Volume with Multimediakey
+#bindsym XF86AudioMute exec amixer set Master toggle
+
+# use Mouse+Mod1 to drag floating windows to their wanted position
+floating_modifier Mod1
+
+# start a terminal
+bindsym Mod4+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym Mod4+Shift+q kill
+
+# start dmenu (a program launcher)
+# bindsym Mod1+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym Mod4+d exec --no-startup-id dmenu_run -nb '#181512' -nf '#d6c3b6' -sb '#332d29' -sf '#F0F0F0'
+
+# change focus
+bindsym Mod4+j focus left
+bindsym Mod4+k focus down
+bindsym Mod4+l focus up
+bindsym Mod4+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod1+Left focus left
+bindsym Mod1+Down focus down
+bindsym Mod1+Up focus up
+bindsym Mod1+Right focus right
+
+# move focused window
+#bindsym Mod4+Shift+j move left
+#bindsym Mod4+Shift+k move down
+#bindsym Mod4+Shift+l move up
+#bindsym Mod4+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+#bindsym Mod1+d focus child
+
+# switch to workspace
+bindsym Mod4+1 workspace urxvt
+bindsym Mod4+2 workspace www
+bindsym Mod4+3 workspace emacs
+bindsym Mod4+4 workspace pdf
+bindsym Mod4+5 workspace jabref
+bindsym Mod4+6 workspace ncmpcpp
+bindsym Mod4+7 workspace people
+bindsym Mod4+8 workspace thunar
+bindsym Mod4+9 workspace gimp
+bindsym Mod4+0 workspace stuff
+bindsym Mod4+Right workspace next
+bindsym Mod4+Left workspace prev
+
+
+# move focused container to workspace
+bindsym Mod4+Shift+1 move container to workspace urxvt
+bindsym Mod4+Shift+2 move container to workspace www
+bindsym Mod4+Shift+3 move container to workspace emacs
+bindsym Mod4+Shift+4 move container to workspace pdf
+bindsym Mod4+Shift+5 move container to workspace jabref
+bindsym Mod4+Shift+6 move container to workspace ncmpcpp
+bindsym Mod4+Shift+7 move container to workspace people
+bindsym Mod4+Shift+8 move container to workspace thunar
+bindsym Mod4+Shift+9 move container to workspace gimp
+bindsym Mod4+Shift+0 move container to workspace stuff
+
+bindsym Mod4+Shift+y move workspace to output left
+bindsym Mod4+Shift+x move workspace to output right
+
+bindsym Mod4+Shift+l exec i3lock -i ~/.wallpaper/lock.png
+
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize model
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j           resize shrink width 10 px or 10 ppt
+        bindsym k           resize grow height 10 px or 10 ppt
+        bindsym l           resize shrink height 10 px or 10 ppt
+        bindsym semicolon   resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+for_window [class="URxvt"] border 3pixel
+for_window [class="Skype"] floating enable
+for_window [class="Pidgin"] floating enable
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+bar {
+        position top
+	status_command python ~/.i3/status.py
+#	status_command i3status
+#	output_format = "i3bar"
+	colors	{
+		background #151515
+		statusline #9a875f
+                focused_workspace $black2 $white2 $black1
+		active_workspace $black2 $white1 $white2
+		inactive_workspace $black2 $black1 $white2
+		urgent_workspace $red2 $red1 #FFFFFF
+
+		}
+}
+
+#Programms starting
+
+#exec --no-startup-id nm-applet
+#exec pa-applet &
+exec compton --config .compton.conf -b
+exec mpd
+
+#Lunching programs on defined workspaces
+assign [class="net-sf-jabref-JabRefMain"] jabref
+assign [class="Emacs"] emacs
+assign [class="Firefox"] www
+assign [class="Evince"] pdf
+assign [class="Thunar"] thunar
+assign [class="Skype"] people
+assign [class="Pidgin"] people
+assign [class="Gimp"] gimp
+
+
+#######################################################################
+# automatically start i3-config-wizard to offer the user to create a
+# keysym-based config which used his favorite modifier (alt or windows)
+#
+# i3-config-wizard will not launch if there already is a config file
+# in ~/.i3/config.
+#
+# Please remove the following exec line:
+#######################################################################
+#exec i3-config-wizard
